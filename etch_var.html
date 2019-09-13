@@ -12,10 +12,10 @@
 </body>
 <script>
     const container = document.querySelector(".container")
-    var letters= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"]
+    
     var size
 
-
+    /* var letters= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"] */
     /* letters.forEach(
         function(e){
             for(i=1 ; i<17 ; i++){
@@ -29,9 +29,9 @@
             }
         ) */
 
-    
+    var lightness= 100
     container.addEventListener("mouseover", drawBlack)
-    container.addEventListener("mouseout", trail)
+    container.addEventListener("mouseout", trailalt)
     var size = 16
     redraw(16);
 
@@ -42,11 +42,31 @@
         }
     
     }
-    function trail(e) {
+    function trailalt (e){
+        if (e.target.classList.contains("cell")) {
+        e.target.classList.remove("drawing");
+            if (e.target.hasAttribute("data-light")){
+                 lightness = e.target.getAttribute("data-light")
+                
+            }
+            else {e.target.setAttribute("data-light", "100")
+               lightness=100}
+            
+
+        let randcol=Math.floor((Math.random())*360)
+        let newlight = lightness-10
+        e.target.style.backgroundColor = `hsl(${randcol}, 77%, ${newlight}%)`
+        e.target.setAttribute("data-light",`${newlight}`)
+
+        console.log(lightness)
+        console.log(newlight)
+
+    }
+    /* function trail(e) {
     if (e.target.classList.contains("cell")) {
         e.target.classList.remove("drawing");
         e.target.classList.add("drawn");
-        }
+        } */
     
     }
     document.getElementById("eraser").addEventListener("click", erase)
