@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <title>etch!</title>
 <head  ><link href=".\style\style.css" rel="stylesheet">
 <button id="eraser" class="button">erase board</button><button id="resizer" class="button">change size</button>
@@ -30,15 +31,23 @@
         ) */
 
     var lightness= 100
-    container.addEventListener("mouseover", drawBlack)
+    container.addEventListener("mouseover", cursor)
     container.addEventListener("mouseout", trailalt)
     var size = 16
     redraw(16);
 
     
-    function drawBlack(e) {
+    function cursor(e) {
     if (e.target.className === "cell") {
-        e.target.classList.add("drawing");
+        if(e.target.hasAttribute("data-color")){
+            lightness = e.target.getAttribute("data-light")
+        cellcolor = e.target.getAttribute("data-color")
+        e.target.style.backgroundColor = `hsl(${cellcolor}, 77%, ${lightness-50}%)`
+        ;
+            
+        }
+        else {e.target.style.backgroundColor = "gray"}
+        
         }
     
     }
