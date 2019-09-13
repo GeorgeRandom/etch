@@ -32,7 +32,9 @@
     
     container.addEventListener("mouseover", drawBlack)
     container.addEventListener("mouseout", trail)
-    redraw(16)
+    var size = 16
+    redraw(16);
+
     
     function drawBlack(e) {
     if (e.target.className === "cell") {
