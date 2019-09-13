@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<title>etch!</title>
+<head  ><link href=".\style\style.css" rel="stylesheet">
+<button id="eraser" class="button">erase board</button><button id="resizer" class="button">change size</button>
+</head>
+<body>
+    
+    <div class="container">
+
+    </div>
+    
+</body>
+<script>
+    const container = document.querySelector(".container")
+    
+    var size
+
+    /* var letters= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"] */
+    /* letters.forEach(
+        function(e){
+            for(i=1 ; i<17 ; i++){
+                let g= document.createElement("div")
+                g.setAttribute("row", e)
+                g.setAttribute("col", i)
+                g.setAttribute("class", "cell")
+                g.setAttribute("style", `float:left; width: ${100/16}%; height: ${100/16}%;`)
+                container.appendChild(g)
+                }
+            }
+        ) */
+
+    var lightness= 100
+    container.addEventListener("mouseover", drawBlack)
+    container.addEventListener("mouseout", trailalt)
+    var size = 16
+    redraw(16);
+
+    
+    function drawBlack(e) {
+    if (e.target.className === "cell") {
+        e.target.classList.add("drawing");
+        }
+    
+    }
+    function trailalt (e){
+        if (e.target.classList.contains("cell")) {
+            e.target.classList.remove("drawing");
+                if (e.target.hasAttribute("data-color")){
+                    lightness = e.target.getAttribute("data-light")
+                    cellcolor = e.target.getAttribute("data-color")
+                    let newlight = lightness-10
+                    e.target.style.backgroundColor = `hsl(${cellcolor}, 77%, ${newlight}%)`
+                    e.target.setAttribute("data-light",`${newlight}`)
+                    console.log(cellcolor)
+                    
+                }
+                else {e.target.setAttribute("data-light", "90")
+                let randcol=Math.floor((Math.random())*360)
+                e.target.style.backgroundColor = `hsl(${randcol}, 77%, 90%)`
+                e.target.setAttribute("data-color",`${randcol}`)
+                    
+
+                }
+            
+
+        
+        
+        
+        
+
+        console.log(lightness)
+        
+
+    }
+    /* function trail(e) {
+    if (e.target.classList.contains("cell")) {
+        e.target.classList.remove("drawing");
+        e.target.classList.add("drawn");
+        } */
+    
+    }
+    document.getElementById("eraser").addEventListener("click", erase)
+    function erase() {
+        console.log("erasing")
+        
+        var i=1
+        for(i=1; i<=size; i++){
+            let a = i
+            //setTimeout(function(){
+                console.log(a)
+            let erasingCol = container.querySelectorAll(`div [col="${a}"]`)
+                erasingCol.forEach(function(r){
+                    
+                        r.removeAttribute("data-light")
+                        r.removeAttribute("data-color")
+                        r.style.backgroundColor="white"
+                        })
+                    //},300);
+                }
+            }
+            
+    document.getElementById("resizer").addEventListener("click", function(){
+        size = prompt("new size?");
+        redraw(size);
+
+                }
+                )
+                
+    
+    function redraw(size){
+        while(container.childNodes.length>0){
+            container.removeChild(container.firstChild)
+        }
+        
+        
+        for (i=1; i<=size; i++){
+            let row = i
+            
+            for (a=1; a<=size;a++){
+                
+                let g= document.createElement("div")
+                g.setAttribute("row", row)
+                g.setAttribute("col", i)
+                g.setAttribute("class", "cell")
+                g.setAttribute("style", `float:left; width: ${100/size}%; height: ${100/size}%;`)
+                container.appendChild(g)
+            }
+
+            
+            
+
+
+        }
+        
+    }
+
+                
+               
+    
+    
+
+                
+            
+
+                
+                    
+                
+
+        
+            
+
+
+            
+
+        
+    
+  
+    
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+</script>
+</html>
