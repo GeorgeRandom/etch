@@ -1,0 +1,47 @@
+body{
+    text-align: center;
+}
+
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: solid black;
+  color: white;
+  padding: 3%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin : 1%;
+  font-weight: bolder;
+}
+.container {
+    display: block;
+    margin: auto;
+    height: 80vh;
+    width: 70%;
+    max-width: 80vh;
+    max-height: 80vw;
+
+    
+
+}
+.cell {
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid grey;
+    
+  
+
+}
+.drawing {
+    
+    background-color: black;
+}
+.drawn    {
+    background-color: rgb(88, 87, 87);
+
+}
+    
+    
+
